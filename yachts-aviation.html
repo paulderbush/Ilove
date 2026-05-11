@@ -177,11 +177,18 @@
     padding: 140px 40px 100px;
     overflow: hidden;
   }
+  .hero-photo {
+    position: absolute; inset: 0;
+    background: url('images/aviation.png') center/cover no-repeat;
+    filter: blur(10px);
+    transform: scale(1.05);
+    opacity: 0.38;
+  }
   .hero-bg {
     position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 80% 60% at 50% 20%, rgba(100,20,40,0.22) 0%, transparent 60%),
-      linear-gradient(180deg, rgba(26,10,15,0) 60%, rgba(26,10,15,1) 100%);
+      radial-gradient(ellipse 80% 60% at 50% 20%, rgba(100,20,40,0.35) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(26,10,15,0.45) 0%, rgba(26,10,15,0.85) 70%, rgba(26,10,15,1) 100%);
   }
   .hero-grid {
     position: absolute; inset: 0;
@@ -455,6 +462,7 @@
   </div>
 </nav>
 <section class="service-hero">
+  <div class="hero-photo"></div>
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-content">
