@@ -152,72 +152,185 @@
     width: 100%; height: 1px;
     background: linear-gradient(90deg, transparent, rgba(200,200,212,0.15), transparent);
   }
-  .coming-soon { padding: 100px 0; }
-  .coming-soon-inner {
-    text-align: center; padding: 72px 60px;
+  .service-image-section { padding: 60px 0 0; }
+  .service-img-wrap {
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(200,200,212,0.1);
+    max-height: 560px;
+  }
+  .service-img-wrap img {
+    width: 100%;
+    height: 560px;
+    object-fit: cover;
+    display: block;
+  }
+  .service-content { padding: 80px 0; }
+  .service-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    margin-bottom: 60px;
+  }
+  .service-content-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    color: var(--text);
+  }
+  .service-content-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.08rem;
+    color: var(--text-muted);
+    line-height: 1.9;
+    margin-bottom: 20px;
+  }
+  .service-features { display: flex; flex-direction: column; gap: 16px; }
+  .service-feature {
+    padding: 20px 24px;
     background: rgba(255,255,255,0.025);
-    border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 28px; position: relative; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    transition: all 0.3s;
   }
-  .coming-soon-inner::before {
-    content: ''; position: absolute;
-    top: -80px; left: 50%; transform: translateX(-50%);
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(120,30,55,0.1) 0%, transparent 70%);
-    pointer-events: none;
+  .service-feature:hover {
+    border-color: rgba(200,200,212,0.15);
+    background: rgba(100,20,40,0.08);
   }
-  .coming-soon-eyebrow {
-    font-size: 0.58rem; letter-spacing: 0.3em;
-    text-transform: uppercase; color: var(--gold);
-    margin-bottom: 32px; display: block; opacity: 0.8;
+  .service-feature-title {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 6px;
+    letter-spacing: 0.05em;
   }
-  .divider-center {
-    width: 50px; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(200,200,212,0.5), transparent);
-    margin: 0 auto 32px;
+  .service-feature-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.7;
   }
-  .coming-soon-title {
+  .service-eyebrow {
+    font-size: 0.58rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
+    opacity: 0.8;
+  }
+  .divider-left {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin-bottom: 32px;
+  }
+  @media (max-width: 768px) {
+    .service-content-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+  .service-contact { padding: 80px 0 100px; }
+  .service-contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .contact-left-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 300;
-    font-style: italic; color: var(--text); line-height: 1.3; margin-bottom: 24px;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 16px;
   }
-  .coming-soon-text {
+  .contact-left-sub {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem; color: var(--text-muted);
-    line-height: 1.9; max-width: 500px; margin: 0 auto;
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 32px;
   }
-  .cta-section { padding: 80px 0 100px; }
-  .cta-inner { text-align: center; }
-  .cta-eyebrow {
-    font-size: 0.58rem; letter-spacing: 0.3em;
-    text-transform: uppercase; color: var(--gold);
-    margin-bottom: 20px; display: block; opacity: 0.8;
+  .contact-detail { margin-bottom: 24px; }
+  .contact-detail-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.7;
+    display: block;
+    margin-bottom: 6px;
   }
-  .cta-title {
+  .contact-detail-value {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300;
-    color: var(--text); margin-bottom: 16px; line-height: 1.2;
+    font-size: 1.05rem;
+    color: var(--text);
   }
-  .cta-sub {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem; color: var(--text-muted);
-    margin-bottom: 40px; line-height: 1.8;
+  .contact-detail-value a { color: var(--text); text-decoration: none; transition: color 0.3s; }
+  .contact-detail-value a:hover { color: var(--gold); }
+  .service-form {
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
   }
-  .btn-primary {
-    display: inline-block; padding: 16px 48px;
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-field { display: flex; flex-direction: column; gap: 8px; }
+  .form-field label {
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+  .form-field input, .form-field textarea, .form-field select {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 14px 18px;
+    color: var(--text);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    outline: none;
+    transition: all 0.3s;
+    appearance: none;
+  }
+  .form-field input:focus, .form-field textarea:focus, .form-field select:focus {
+    border-color: rgba(200,200,212,0.35);
+    background: rgba(200,200,212,0.04);
+  }
+  .form-field input::placeholder, .form-field textarea::placeholder { color: rgba(240,237,232,0.25); }
+  .form-field select option { background: #200D13; }
+  .form-field textarea { resize: none; height: 100px; }
+  .btn-submit {
+    padding: 16px;
     background: linear-gradient(135deg, #C8C8D4, #9898AA);
-    border: none; border-radius: 60px;
-    color: #1A0A0F; font-family: 'Montserrat', sans-serif;
-    font-size: 0.65rem; font-weight: 600;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    cursor: pointer; text-decoration: none;
+    border: none;
+    border-radius: 12px;
+    color: #1A0A0F;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 8px 32px rgba(200,200,212,0.2);
   }
-  .btn-primary:hover {
+  .btn-submit:hover {
     transform: translateY(-2px);
     box-shadow: 0 16px 48px rgba(200,200,212,0.3);
     background: linear-gradient(135deg, #E2E2EC, #B0B0C0);
+  }
+  @media (max-width: 768px) {
+    .service-contact-inner { grid-template-columns: 1fr; gap: 48px; }
+    .form-row { grid-template-columns: 1fr; }
+    .service-form { padding: 28px 20px; }
   }
   footer {
     padding: 48px 0 32px;
@@ -246,7 +359,6 @@
   @media (max-width: 640px) {
     nav { padding: 0 20px; }
     .container { padding: 0 20px; }
-    .coming-soon-inner { padding: 48px 28px; }
     .footer-inner { padding: 0 20px; }
   }
 </style>
@@ -268,27 +380,92 @@
   </div>
 </section>
 <div class="gold-line"></div>
-<section class="coming-soon">
+
+<section class="service-image-section">
   <div class="container">
-    <div class="coming-soon-inner">
-      <span class="coming-soon-eyebrow">Full Service Details</span>
-      <div class="divider-center"></div>
-      <h2 class="coming-soon-title">This page is being prepared.</h2>
-      <p class="coming-soon-text">In the meantime, contact us directly to discuss your requirements. Every enquiry is handled with absolute discretion and responded to within hours.</p>
+    <div class="service-img-wrap">
+      <img src="images/aviation.png" alt="Yachts & Private Aviation" onerror="this.parentElement.style.display='none'">
     </div>
   </div>
 </section>
 <div class="gold-line"></div>
-<section class="cta-section">
-  <div class="container">
-    <div class="cta-inner">
-      <span class="cta-eyebrow">Ready to begin?</span>
-      <h2 class="cta-title">Tell us where, when and how you want to travel.</h2>
-      <p class="cta-sub">From the aircraft type to the crew brief — we manage every element so you simply arrive.</p>
-      <a href="index.html#contacts" class="btn-primary">Make a Request</a>
+
+<section class="service-content">
+  <div class="container" style="max-width:1100px;">
+    <div class="service-content-grid">
+      <div>
+        <span class="service-eyebrow">Yachts & Private Aviation</span>
+        <div class="divider-left"></div>
+        <h2 class="service-content-title">The sky and sea,<br>on your terms.</h2>
+        <p class="service-content-body">ILOVELUX works with an exclusive network of aircraft brokers and superyacht operators to ensure availability, standard of service and complete discretion — whether for a last-minute transatlantic flight on a Gulfstream G650 or a full season in the Mediterranean on a 60-metre superyacht with a professional crew of eighteen. We do not use intermediary booking platforms or shared charter databases. Every arrangement is negotiated directly.</p>
+        <p class="service-content-body">For clients considering ownership, we provide independent guidance through the acquisition, registration, crewing and ongoing operational management of both aircraft and vessels — connecting you with the legal and technical specialists who ensure your asset performs as you expect it to. The result is total command over how, when and where you travel, with none of the friction.</p>
+      </div>
+      <div class="service-features">
+        <div class="service-feature">
+          <div class="service-feature-title">Private Jet Charter</div>
+          <div class="service-feature-desc">On-demand access to light jets, heavy jets and ultra-long-range aircraft from verified operators worldwide</div>
+        </div>
+        <div class="service-feature">
+          <div class="service-feature-title">Superyacht Charter</div>
+          <div class="service-feature-desc">Seasonal and short-notice yacht charters with professional crew, fully provisioned and managed</div>
+        </div>
+        <div class="service-feature">
+          <div class="service-feature-title">Ownership Consultation</div>
+          <div class="service-feature-desc">Guidance on aircraft and yacht acquisition, registration, crewing and operational management</div>
+        </div>
+        <div class="service-feature">
+          <div class="service-feature-title">Helicopter & Ground Transfer</div>
+          <div class="service-feature-desc">Seamless last-mile solutions from tarmac to destination, managed door to door</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<div class="gold-line"></div>
+
+<section class="service-contact">
+  <div class="container" style="max-width:1100px;">
+    <div class="service-contact-inner">
+      <div>
+        <span class="service-eyebrow">Get in touch</span>
+        <div class="divider-left"></div>
+        <h2 class="contact-left-title">Tell us what<br>you desire.</h2>
+        <p class="contact-left-sub">Every enquiry is treated with absolute discretion. Describe what you need and we will respond within hours.</p>
+        <div class="contact-detail">
+          <span class="contact-detail-label">Email</span>
+          <div class="contact-detail-value"><a href="mailto:hello@ilovelux.com">hello@ilovelux.com</a></div>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-detail-label">WhatsApp</span>
+          <div class="contact-detail-value"><a href="https://wa.me/447901312426" target="_blank" rel="noopener">+44 7901 312426</a></div>
+        </div>
+      </div>
+      <div class="service-form">
+        <div class="form-row">
+          <div class="form-field">
+            <label>First name</label>
+            <input type="text" placeholder="Alexander">
+          </div>
+          <div class="form-field">
+            <label>Last name</label>
+            <input type="text" placeholder="Smith">
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Your email</label>
+          <input type="email" placeholder="your@email.com">
+        </div>
+        <div class="form-field">
+          <label>Your request</label>
+          <textarea placeholder="Describe what you have in mind..."></textarea>
+        </div>
+        <button class="btn-submit">Send Request</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="footer-inner">
     <div class="footer-logo">ILOVELUX</div>
