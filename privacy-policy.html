@@ -12,15 +12,11 @@
     --gold: #C8C8D4;
     --gold-light: #E2E2EC;
     --black: #1A0A0F;
-    --dark: #200D13;
     --text: #F0EDE8;
     --text-muted: rgba(240,237,232,0.55);
-    --radius: 20px;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-
   body {
     background: var(--black);
     background-image: radial-gradient(ellipse 120% 80% at 50% 0%, #3D0F1A 0%, #1A0A0F 55%, #0F060A 100%);
@@ -30,7 +26,6 @@
     overflow-x: hidden;
     min-height: 100vh;
   }
-
   body::before {
     content: '';
     position: fixed;
@@ -40,7 +35,6 @@
     z-index: 9999;
     opacity: 0.35;
   }
-
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -55,7 +49,6 @@
     -webkit-backdrop-filter: blur(30px) saturate(180%);
     border-bottom: 1px solid rgba(200,200,212,0.07);
   }
-
   .nav-logo {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.4rem;
@@ -65,7 +58,6 @@
     text-transform: uppercase;
     text-decoration: none;
   }
-
   .nav-back {
     font-size: 0.6rem;
     letter-spacing: 0.18em;
@@ -75,13 +67,7 @@
     transition: color 0.3s;
   }
   .nav-back:hover { color: var(--gold); }
-
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 120px 40px 80px;
-  }
-
+  .container { max-width: 820px; margin: 0 auto; padding: 120px 40px 80px; }
   .page-eyebrow {
     font-size: 0.58rem;
     letter-spacing: 0.3em;
@@ -91,76 +77,86 @@
     display: block;
     opacity: 0.7;
   }
-
   .page-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 300;
     line-height: 1.15;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
-
-  .page-date {
+  .page-meta {
     font-size: 0.65rem;
     color: var(--text-muted);
-    letter-spacing: 0.1em;
-    margin-bottom: 56px;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
     display: block;
   }
-
   .divider {
     width: 60px;
     height: 1px;
     background: linear-gradient(90deg, var(--gold), transparent);
-    margin-bottom: 48px;
+    margin: 40px 0 48px;
   }
-
-  .policy-section {
-    margin-bottom: 48px;
-  }
-
+  .policy-section { margin-bottom: 44px; }
   .policy-section h2 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     font-weight: 400;
     color: var(--text);
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     letter-spacing: 0.02em;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(200,200,212,0.08);
   }
-
   .policy-section p {
     font-size: 0.82rem;
     color: var(--text-muted);
     line-height: 1.9;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
-
-  .policy-section ul {
+  .policy-section ul, .policy-section ol {
+    padding-left: 0;
     list-style: none;
-    padding: 0;
   }
-  .policy-section ul li {
+  .policy-section ul li, .policy-section ol li {
     font-size: 0.82rem;
     color: var(--text-muted);
     line-height: 1.9;
-    padding-left: 20px;
+    padding-left: 22px;
     position: relative;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
   .policy-section ul li::before {
     content: '—';
     position: absolute;
     left: 0;
     color: var(--gold);
-    opacity: 0.5;
+    opacity: 0.45;
   }
-
-  a.inline-link {
+  .policy-section ol { counter-reset: item; }
+  .policy-section ol li { counter-increment: item; }
+  .policy-section ol li::before {
+    content: counter(item) ".";
+    position: absolute;
+    left: 0;
     color: var(--gold);
-    text-decoration: none;
+    opacity: 0.45;
+    font-size: 0.78rem;
   }
+  .policy-section strong { color: var(--text); font-weight: 500; }
+  a.inline-link { color: var(--gold); text-decoration: none; }
   a.inline-link:hover { text-decoration: underline; }
-
+  .company-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(200,200,212,0.1);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-top: 16px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 2;
+  }
+  .company-box strong { color: var(--gold); display: block; font-size: 0.9rem; margin-bottom: 6px; }
   footer {
     padding: 32px 40px;
     border-top: 1px solid rgba(255,255,255,0.06);
@@ -169,24 +165,11 @@
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 16px;
-    max-width: 800px;
+    max-width: 820px;
     margin: 0 auto;
   }
-  .footer-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    color: var(--gold);
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    opacity: 0.6;
-  }
-  .footer-copy {
-    font-size: 0.6rem;
-    color: var(--text-muted);
-    letter-spacing: 0.1em;
-    opacity: 0.5;
-  }
-
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--gold); letter-spacing: 0.25em; text-transform: uppercase; opacity: 0.6; }
+  .footer-copy { font-size: 0.6rem; color: var(--text-muted); letter-spacing: 0.1em; opacity: 0.5; }
   @media (max-width: 640px) {
     .container { padding: 100px 20px 60px; }
     nav { padding: 0 20px; }
@@ -204,63 +187,189 @@
 <div class="container">
   <span class="page-eyebrow">Legal</span>
   <h1 class="page-title">Privacy Policy</h1>
-  <span class="page-date">Last updated: January 2026</span>
+  <span class="page-meta">Effective date: 1 January 2026</span>
+  <span class="page-meta">Last reviewed: May 2026</span>
   <div class="divider"></div>
 
   <div class="policy-section">
-    <h2>Our commitment to your privacy</h2>
-    <p>ILOVELUX is built on discretion. We do not collect, store, sell or share your personal data with any third parties. This is not a legal formality — it is the foundation of how we operate.</p>
-    <p>We understand that those who use our services value their privacy above all else. Every interaction with ILOVELUX is treated with absolute confidentiality.</p>
+    <h2>1. Who We Are</h2>
+    <p>This Privacy Policy is issued by <strong>ILOVELUX LTD</strong>, a company registered in England and Wales. We are the data controller in respect of your personal data as described in this policy.</p>
+    <div class="company-box">
+      <strong>ILOVELUX LTD</strong>
+      Company Number: 17192402<br>
+      Registered Address: Westminster Green, 8 Dean Ryle Street, Apartment 203, London, United Kingdom, SW1P 4DA<br>
+      Email: <a href="mailto:hello@ilovelux.com" class="inline-link">hello@ilovelux.com</a><br>
+      WhatsApp: <a href="https://wa.me/447901312426" class="inline-link" target="_blank" rel="noopener">+44 7901 312426</a>
+    </div>
+    <p style="margin-top:14px;">This policy applies to all personal data we collect through our website, communications (email, WhatsApp, Telegram) and in the course of providing our services.</p>
   </div>
 
   <div class="policy-section">
-    <h2>What we do not do</h2>
+    <h2>2. Legal Framework</h2>
+    <p>We process personal data in accordance with:</p>
     <ul>
-      <li>We do not store your personal information beyond what is necessary to fulfil your request</li>
-      <li>We do not sell, rent or share your data with third parties</li>
-      <li>We do not use cookies for tracking or advertising purposes</li>
-      <li>We do not build profiles or databases of our clients</li>
-      <li>We do not use your information for any purpose other than responding to your enquiry</li>
+      <li>The UK General Data Protection Regulation (UK GDPR)</li>
+      <li>The Data Protection Act 2018 (DPA 2018)</li>
+      <li>The Privacy and Electronic Communications Regulations 2003 (PECR) where applicable</li>
+    </ul>
+    <p>As a data controller, we are registered with / notified to the Information Commissioner's Office (ICO) as required by applicable law.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>3. Personal Data We Collect</h2>
+    <p>We may collect and process the following categories of personal data:</p>
+    <ul>
+      <li><strong>Identity data:</strong> first name, last name</li>
+      <li><strong>Contact data:</strong> email address, telephone number, WhatsApp or Telegram handle</li>
+      <li><strong>Request data:</strong> details of the service or request you submit to us</li>
+      <li><strong>Communication data:</strong> records of correspondence between you and ILOVELUX</li>
+      <li><strong>Technical data:</strong> IP address, browser type, and basic analytics data collected by our website (non-identifying, aggregated only)</li>
+    </ul>
+    <p>We do not collect, store or process any special category personal data (such as health, biometric, racial or ethnic origin data) unless you explicitly provide it as part of a service request and consent to its use.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>4. How We Collect Personal Data</h2>
+    <ul>
+      <li>Directly from you when you complete our contact form, send an email, or message us via WhatsApp or Telegram</li>
+      <li>Through your use of our website (technical data only, aggregated and non-identifying)</li>
+      <li>Through referrals from existing clients or business partners (with appropriate authorisation)</li>
     </ul>
   </div>
 
   <div class="policy-section">
-    <h2>Information you provide to us</h2>
-    <p>When you contact us via our website, WhatsApp or email, you may voluntarily provide your name, contact details and a description of the service you are interested in. This information is used solely to respond to your request and coordinate the service.</p>
-    <p>Once a service is completed, any personal information provided is deleted from our systems unless you have explicitly requested an ongoing relationship or further services.</p>
+    <h2>5. Lawful Basis for Processing</h2>
+    <p>We rely on the following lawful bases under Article 6 UK GDPR:</p>
+    <ul>
+      <li><strong>Contract (Art. 6(1)(b)):</strong> Processing necessary to provide a service you have requested or to take steps prior to entering into a contract</li>
+      <li><strong>Legitimate interests (Art. 6(1)(f)):</strong> To respond to enquiries, manage our business, prevent fraud, and ensure the security of our systems — where these interests are not overridden by your rights</li>
+      <li><strong>Legal obligation (Art. 6(1)(c)):</strong> Where processing is required to comply with applicable law (e.g. anti-money laundering, tax obligations)</li>
+      <li><strong>Consent (Art. 6(1)(a)):</strong> Where we have obtained your explicit consent for a specific processing activity, which you may withdraw at any time</li>
+    </ul>
   </div>
 
   <div class="policy-section">
-    <h2>Third-party service providers</h2>
-    <p>In the course of delivering a service, we may need to engage third-party suppliers (hotels, aviation providers, event organisers, etc.). In such cases, only the minimum necessary information is shared, strictly for the purpose of fulfilling your request. We work exclusively with partners who adhere to strict confidentiality standards.</p>
+    <h2>6. How We Use Your Personal Data</h2>
+    <p>We use your personal data solely for the following purposes:</p>
+    <ul>
+      <li>To respond to and fulfil your service request or enquiry</li>
+      <li>To communicate with you regarding your request or an ongoing service</li>
+      <li>To arrange and coordinate third-party service providers on your behalf</li>
+      <li>To send service-related communications (not marketing, unless you have opted in)</li>
+      <li>To comply with legal and regulatory obligations</li>
+      <li>To protect the security and integrity of our business</li>
+    </ul>
+    <p>We do not use your personal data for automated decision-making or profiling.</p>
   </div>
 
   <div class="policy-section">
-    <h2>Communication security</h2>
-    <p>We recommend using encrypted communication channels (WhatsApp, Signal, or encrypted email) for sensitive requests. All communications received by ILOVELUX are treated as strictly confidential and are not disclosed to any party without your explicit consent.</p>
+    <h2>7. Disclosure to Third Parties</h2>
+    <p>We treat your information with the strictest confidence. We will only share your personal data with third parties in the following limited circumstances:</p>
+    <ul>
+      <li><strong>Service providers:</strong> Hotels, aviation operators, event companies, or other suppliers engaged to fulfil your specific request — only the minimum data necessary is shared, and only under obligations of confidentiality</li>
+      <li><strong>Legal and regulatory authorities:</strong> Where required by law, court order, or at the request of a competent regulatory authority</li>
+      <li><strong>Professional advisers:</strong> Lawyers, accountants or auditors acting in that capacity, bound by duties of confidentiality</li>
+    </ul>
+    <p>We do not sell, rent, trade or otherwise transfer your personal data to any third party for commercial or marketing purposes, under any circumstances.</p>
   </div>
 
   <div class="policy-section">
-    <h2>Your rights</h2>
-    <p>You have the right to request confirmation of what information (if any) we hold about you, and to request its deletion at any time. Simply contact us at <a href="mailto:hello@ilovelux.com" class="inline-link">hello@ilovelux.com</a> and we will respond within 48 hours.</p>
+    <h2>8. International Transfers</h2>
+    <p>Where we engage third-party service providers located outside the United Kingdom or European Economic Area to fulfil a service request on your behalf (for example, an overseas hotel or operator), personal data may be transferred internationally. In such cases:</p>
+    <ul>
+      <li>We share only the minimum data required to fulfil the service</li>
+      <li>We ensure appropriate safeguards are in place as required by UK GDPR, including reliance on adequacy decisions, standard contractual clauses, or other approved transfer mechanisms where applicable</li>
+    </ul>
   </div>
 
   <div class="policy-section">
-    <h2>Changes to this policy</h2>
-    <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated date. Continued use of our services after any change constitutes acceptance of the revised policy.</p>
+    <h2>9. Data Retention</h2>
+    <p>We retain personal data only for as long as is necessary for the purposes for which it was collected:</p>
+    <ul>
+      <li><strong>Enquiries and requests not resulting in a service:</strong> deleted within 30 days of the conclusion of correspondence</li>
+      <li><strong>Active service engagements:</strong> retained for the duration of the service plus up to 6 years thereafter (to comply with limitation periods under the Limitation Act 1980 and related obligations)</li>
+      <li><strong>Legal and financial records:</strong> retained for the period required by applicable law (typically 6–7 years under HMRC and Companies Act requirements)</li>
+    </ul>
+    <p>When personal data is no longer required, it is securely deleted or anonymised.</p>
   </div>
 
   <div class="policy-section">
-    <h2>Contact</h2>
-    <p>For any questions regarding this Privacy Policy, please contact us at:<br>
-    <a href="mailto:hello@ilovelux.com" class="inline-link">hello@ilovelux.com</a><br>
-    <a href="https://wa.me/447901312426" class="inline-link" target="_blank" rel="noopener">+44 7901 312426</a></p>
+    <h2>10. Your Rights</h2>
+    <p>Under UK GDPR and the Data Protection Act 2018, you have the following rights in relation to your personal data:</p>
+    <ol>
+      <li><strong>Right of access</strong> — to receive a copy of the personal data we hold about you (Subject Access Request)</li>
+      <li><strong>Right to rectification</strong> — to have inaccurate or incomplete data corrected</li>
+      <li><strong>Right to erasure ("right to be forgotten")</strong> — to request deletion of your data, subject to legal retention obligations</li>
+      <li><strong>Right to restriction of processing</strong> — to request that we limit how we use your data in certain circumstances</li>
+      <li><strong>Right to data portability</strong> — to receive your data in a structured, machine-readable format (where processing is based on consent or contract)</li>
+      <li><strong>Right to object</strong> — to object to processing based on legitimate interests or for direct marketing</li>
+      <li><strong>Right to withdraw consent</strong> — where processing is based on consent, to withdraw it at any time without affecting the lawfulness of prior processing</li>
+      <li><strong>Rights related to automated decision-making</strong> — we do not carry out solely automated decision-making with legal or similarly significant effects</li>
+    </ol>
+    <p>To exercise any of these rights, please contact us at <a href="mailto:hello@ilovelux.com" class="inline-link">hello@ilovelux.com</a>. We will respond within one calendar month as required by UK GDPR.</p>
+    <p>We may need to verify your identity before processing a request. There is no fee for making a request unless it is manifestly unfounded, excessive or repetitive, in which case we may charge a reasonable fee or decline the request.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>11. Cookies and Tracking</h2>
+    <p>Our website uses only strictly necessary technical operations required for the page to function. We do not use tracking cookies, advertising pixels, or third-party analytics services that identify individual users. No consent for cookies is required as we do not set non-essential cookies.</p>
+    <p>If this changes in the future, we will update this policy and implement a compliant cookie consent mechanism prior to any such use.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>12. Security</h2>
+    <p>We implement appropriate technical and organisational measures to protect your personal data against accidental loss, unauthorised access, alteration or disclosure. These include:</p>
+    <ul>
+      <li>Restricted access to personal data on a need-to-know basis</li>
+      <li>Use of encrypted communication channels</li>
+      <li>Regular review of our data handling practices</li>
+    </ul>
+    <p>In the event of a personal data breach that is likely to result in a risk to your rights and freedoms, we will notify the ICO within 72 hours and, where required, notify affected individuals without undue delay.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>13. Children's Data</h2>
+    <p>Our services are not directed at, and we do not knowingly collect personal data from, anyone under the age of 18. If we become aware that personal data of a minor has been submitted without appropriate authorisation, we will delete it promptly.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>14. Links to Third-Party Websites</h2>
+    <p>Our website may contain links to third-party websites. We are not responsible for the privacy practices of those websites and recommend that you review their respective privacy policies.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>15. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time to reflect changes in law, our services, or our data practices. The effective date at the top of this page will reflect when the policy was last updated. We encourage you to review this page periodically.</p>
+    <p>Where changes are material, we will take reasonable steps to bring them to your attention.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>16. Right to Complain</h2>
+    <p>If you believe we have not handled your personal data in accordance with applicable law, you have the right to lodge a complaint with the Information Commissioner's Office (ICO), the UK's data protection supervisory authority:</p>
+    <div class="company-box">
+      <strong>Information Commissioner's Office</strong>
+      Website: <a href="https://ico.org.uk" class="inline-link" target="_blank" rel="noopener">ico.org.uk</a><br>
+      Helpline: 0303 123 1113<br>
+      Address: Wycliffe House, Water Lane, Wilmslow, Cheshire, SK9 5AF
+    </div>
+    <p style="margin-top:14px;">We would, however, appreciate the opportunity to address your concerns directly before you approach the ICO. Please contact us first at <a href="mailto:hello@ilovelux.com" class="inline-link">hello@ilovelux.com</a>.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2>17. Contact Us</h2>
+    <p>For any questions, requests or concerns relating to this Privacy Policy or our data handling practices, please contact the data controller:</p>
+    <div class="company-box">
+      <strong>ILOVELUX LTD — Data Enquiries</strong>
+      Email: <a href="mailto:hello@ilovelux.com" class="inline-link">hello@ilovelux.com</a><br>
+      WhatsApp: <a href="https://wa.me/447901312426" class="inline-link" target="_blank" rel="noopener">+44 7901 312426</a><br>
+      Address: Westminster Green, 8 Dean Ryle Street, Apartment 203, London, SW1P 4DA
+    </div>
   </div>
 </div>
 
 <footer>
   <div class="footer-logo">ILOVELUX</div>
-  <div class="footer-copy">© 2026 ILOVELUX. All rights reserved. London, UK.</div>
+  <div class="footer-copy">© 2026 ILOVELUX LTD. Company No. 17192402. All rights reserved.</div>
 </footer>
 
 </body>
