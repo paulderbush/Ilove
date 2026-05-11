@@ -389,6 +389,11 @@
     gap: 8px;
     margin-top: 20px;
   }
+  nav.menu-open {
+    background: rgba(20,6,10,1) !important;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
   @media (max-width: 768px) {
     .nav-links { display: none !important; }
     .lang-switcher { display: none !important; }
@@ -402,43 +407,37 @@
     z-index: 1200;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     align-items: flex-end;
   }
   .float-btn {
+    width: 52px; height: 52px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 11px 18px 11px 14px;
-    border-radius: 50px;
+    justify-content: center;
     text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.68rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255,255,255,0.12);
     transition: all 0.25s ease;
-    white-space: nowrap;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.35);
   }
-  .float-btn svg { flex-shrink: 0; }
   .float-btn-wa {
-    background: rgba(37,211,102,0.15);
+    background: rgba(37,211,102,0.18);
     color: #5eda8e;
-    border-color: rgba(37,211,102,0.25);
+    border-color: rgba(37,211,102,0.3);
   }
-  .float-btn-wa:hover { background: rgba(37,211,102,0.25); border-color: rgba(37,211,102,0.45); }
+  .float-btn-wa:hover { background: rgba(37,211,102,0.32); border-color: rgba(37,211,102,0.55); transform: scale(1.08); }
   .float-btn-tg {
-    background: rgba(41,182,246,0.15);
+    background: rgba(41,182,246,0.18);
     color: #7dd3fc;
-    border-color: rgba(41,182,246,0.25);
+    border-color: rgba(41,182,246,0.3);
   }
-  .float-btn-tg:hover { background: rgba(41,182,246,0.25); border-color: rgba(41,182,246,0.45); }
+  .float-btn-tg:hover { background: rgba(41,182,246,0.32); border-color: rgba(41,182,246,0.55); transform: scale(1.08); }
   @media (max-width: 768px) {
-    .float-contact { bottom: 20px; right: 16px; gap: 8px; }
-    .float-btn { padding: 10px 14px 10px 12px; font-size: 0.62rem; }
+    .float-contact { bottom: 20px; right: 16px; }
+    .float-btn { width: 48px; height: 48px; }
   }
 
   /* ─── HERO ─── */
@@ -663,6 +662,16 @@
     transition: all 0.4s ease;
     cursor: pointer;
   }
+  .card-photo {
+    position: absolute; inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: blur(2px);
+    transform: scale(1.05);
+    opacity: 0.18;
+    transition: opacity 0.4s ease;
+  }
+  .service-card:hover .card-photo { opacity: 0.28; }
   .service-card:first-child { border-radius: 28px 0 0 0; }
   .service-card:nth-child(3) { border-radius: 0 28px 0 0; }
   .service-card:nth-child(7) { border-radius: 0 0 0 28px; }
@@ -989,6 +998,7 @@
     #popup { padding: 36px 24px 32px; }
     .popup-logo-text { font-size: 2rem; }
     .container { padding: 0 20px; }
+    .footer-inner { flex-direction: column; align-items: center; text-align: center; }
   }
   /* Contact method tabs */
   .contact-method-tabs {
@@ -1157,46 +1167,55 @@
 
     <div class="services-grid">
       <div class="service-card reveal" data-href="luxury-travel.html">
+        <div class="card-photo" style="background-image:url('images/travel.png')"></div>
         <span class="service-num">01</span>
         <div class="service-name" data-en="Luxury Travel" data-ru="Люксовые путешествия">Luxury Travel</div>
         <p class="service-detail" data-en="Secret destinations, hidden resorts and extraordinary routes that no mainstream travel agency has ever heard of. We go where guidebooks don't." data-ru="Секретные направления, скрытые курорты и маршруты, о которых массовые агентства не знают. Мы едем туда, куда путеводители не добираются.">Secret destinations, hidden resorts and extraordinary routes that no mainstream travel agency has ever heard of. We go where guidebooks don't.</p>
       </div>
       <div class="service-card reveal" style="transition-delay:0.07s" data-href="events-celebrations.html">
+        <div class="card-photo" style="background-image:url('images/events.png')"></div>
         <span class="service-num">02</span>
         <div class="service-name" data-en="Events & Celebrations" data-ru="События и праздники">Events & Celebrations</div>
         <p class="service-detail" data-en="Private birthdays, weddings, parties and special occasions — designed, produced and executed beyond expectation." data-ru="Частные дни рождения, свадьбы, вечеринки и особые мероприятия — спроектированные и реализованные с превышением ожиданий.">Private birthdays, weddings, parties and special occasions — designed, produced and executed beyond expectation.</p>
       </div>
       <div class="service-card reveal" style="transition-delay:0.14s" data-href="lifestyle-vip-support.html">
+        <div class="card-photo" style="background-image:url('images/lifestyle.png')"></div>
         <span class="service-num">03</span>
         <div class="service-name" data-en="Lifestyle VIP Support" data-ru="VIP-поддержка образа жизни">Lifestyle VIP Support</div>
         <p class="service-detail" data-en="Personal shoppers, private chefs, wellness specialists, security and everything that keeps your daily life seamless." data-ru="Личные шопперы, повара, специалисты по здоровью, охрана — всё, что делает повседневную жизнь безупречной.">Personal shoppers, private chefs, wellness specialists, security and everything that keeps your daily life seamless.</p>
       </div>
       <div class="service-card reveal" style="transition-delay:0.21s" data-href="art-acquisition.html">
+        <div class="card-photo" style="background-image:url('images/art.png')"></div>
         <span class="service-num">04</span>
         <div class="service-name" data-en="Art Acquisition" data-ru="Приобретение предметов искусства">Art Acquisition</div>
         <p class="service-detail" data-en="Access to private collections, galleries and auctions. Expert advisory and discreet procurement of exceptional works." data-ru="Доступ к частным коллекциям, галереям и аукционам. Экспертное сопровождение и деликатное приобретение исключительных работ.">Access to private collections, galleries and auctions. Expert advisory and discreet procurement of exceptional works.</p>
       </div>
       <div class="service-card reveal" style="transition-delay:0.28s" data-href="banking-support.html">
+        <div class="card-photo" style="background-image:url('images/banking.png')"></div>
         <span class="service-num">05</span>
         <div class="service-name" data-en="Banking Support" data-ru="Банковское сопровождение">Banking Support</div>
         <p class="service-detail" data-en="Introduction to private banks, wealth management guidance and facilitation of complex international financial needs." data-ru="Знакомство с частными банками, рекомендации по управлению капиталом и сопровождение сложных международных финансовых потребностей.">Introduction to private banks, wealth management guidance and facilitation of complex international financial needs.</p>
       </div>
       <div class="service-card reveal" style="transition-delay:0.35s" data-href="real-estate-sourcing.html">
+        <div class="card-photo" style="background-image:url('images/estate.png')"></div>
         <span class="service-num">06</span>
         <div class="service-name" data-en="Real Estate Sourcing" data-ru="Поиск недвижимости">Real Estate Sourcing</div>
         <p class="service-detail" data-en="Off-market properties, private islands, penthouses and estates — sourced through exclusive global networks." data-ru="Внерыночные объекты, частные острова, пентхаусы и поместья — через эксклюзивные глобальные сети.">Off-market properties, private islands, penthouses and estates — sourced through exclusive global networks.</p>
       </div>
       <div class="service-card reveal" style="transition-delay:0.42s" data-href="yachts-aviation.html">
+        <div class="card-photo" style="background-image:url('images/aviation.png')"></div>
         <span class="service-num">07</span>
         <div class="service-name" data-en="Yachts & Private Aviation" data-ru="Яхты и частная авиация">Yachts & Private Aviation</div>
         <p class="service-detail" data-en="Charter, ownership, management. From a last-minute G650 to a season-long superyacht — we handle every detail." data-ru="Аренда, владение, управление. От срочного рейса на G650 до аренды суперяхты на сезон — мы берём на себя каждую деталь.">Charter, ownership, management. From a last-minute G650 to a season-long superyacht — we handle every detail.</p>
       </div>
       <div class="service-card reveal" style="transition-delay:0.49s" data-href="rare-acquisitions.html">
+        <div class="card-photo" style="background-image:url('images/rare.png')"></div>
         <span class="service-num">08</span>
         <div class="service-name" data-en="Rare Acquisitions" data-ru="Редкие Покупки">Rare Acquisitions</div>
         <p class="service-detail" data-en="Audemars Piguet, Hermès Birkin, Patek Philippe — items with 3–5 year waitlists. We have the contacts to source the world's most exclusive pieces in weeks, not years." data-ru="Часы Audemars Piguet, сумки Hermès Birkin, Patek Philippe — вещи с очередью на 3–5 лет. У нас есть контакты, чтобы достать самое эксклюзивное за недели, а не годы.">Audemars Piguet, Hermès Birkin, Patek Philippe — items with 3–5 year waitlists. We have the contacts to source the world's most exclusive pieces in weeks, not years.</p>
       </div>
       <div class="service-card reveal" style="transition-delay:0.56s" data-href="bespoke-requests.html">
+        <div class="card-photo" style="background-image:url('images/bespoke.png')"></div>
         <span class="service-num">09</span>
         <div class="service-name" data-en="Bespoke Requests" data-ru="Индивидуальные запросы">Bespoke Requests</div>
         <p class="service-detail" data-en="If it can be done, we do it. And if it can't — we find a way. Send us your most unusual request." data-ru="Если это возможно — мы это сделаем. А если нет — найдём способ. Пришлите нам самый необычный запрос.">If it can be done, we do it. And if it can't — we find a way. Send us your most unusual request.</p>
@@ -1357,8 +1376,10 @@
   function toggleMenu() {
     const btn = document.getElementById('navHamburger');
     const menu = document.getElementById('mobileMenu');
+    const nav = document.getElementById('navbar');
     btn.classList.toggle('open');
     menu.classList.toggle('open');
+    nav.classList.toggle('menu-open');
   }
 
 // ─── CONTACT METHOD ───
@@ -1529,13 +1550,11 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 </script>
 
 <div class="float-contact">
-  <a class="float-btn float-btn-wa" href="https://wa.me/447901312426" target="_blank" rel="noopener">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    WhatsApp
+  <a class="float-btn float-btn-wa" href="https://wa.me/447901312426" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
-  <a class="float-btn float-btn-tg" href="https://t.me/iloveluxuk" target="_blank" rel="noopener">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-    Telegram
+  <a class="float-btn float-btn-tg" href="https://t.me/iloveluxuk" target="_blank" rel="noopener" aria-label="Telegram">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
   </a>
 </div>
 </body>
