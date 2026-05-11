@@ -107,18 +107,89 @@
     transition: opacity 0.3s;
   }
   .nav-logo:hover { opacity: 0.75; }
-  .nav-back {
-    font-size: 0.62rem;
-    letter-spacing: 0.18em;
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--text-muted);
     text-decoration: none;
     transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0; right: 0;
+    height: 1px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .lang-switcher {
     display: flex;
     align-items: center;
+    gap: 4px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 40px;
+    padding: 4px 6px;
+  }
+  .lang-btn {
+    padding: 5px 12px;
+    border-radius: 30px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .lang-btn.active {
+    background: rgba(200,200,212,0.15);
+    color: var(--gold-light);
+    border: 1px solid rgba(200,200,212,0.25);
+  }
+  .contact-method-tabs {
+    display: flex;
     gap: 8px;
   }
-  .nav-back:hover { color: var(--gold); }
+  .method-tab {
+    flex: 1;
+    padding: 11px 8px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    color: var(--text-muted);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-transform: uppercase;
+  }
+  .method-tab:hover { border-color: rgba(200,200,212,0.2); color: var(--text); }
+  .method-tab.active {
+    background: rgba(200,200,212,0.1);
+    border-color: rgba(200,200,212,0.35);
+    color: var(--gold-light);
+  }
+  #sc-wrap { transition: opacity 0.25s ease; }
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+  }
 
   /* HERO */
   .service-hero {
@@ -463,7 +534,15 @@
 <!-- NAV -->
 <nav id="navbar">
   <a href="index.html" class="nav-logo">ILOVELUX</a>
-  <a href="index.html" class="nav-back">← Back</a>
+  <ul class="nav-links">
+    <li><a href="index.html#services" data-en="Services" data-ru="Услуги">Services</a></li>
+    <li><a href="index.html#who-we-are" data-en="Who We Are" data-ru="О нас">Who We Are</a></li>
+    <li><a href="index.html#contacts" data-en="Contacts" data-ru="Контакты">Contacts</a></li>
+  </ul>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('ru')">RU</button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -471,10 +550,10 @@
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Our Services</div>
+    <div class="hero-eyebrow" data-en="Our Services" data-ru="Наши Услуги">Our Services</div>
     <div class="hero-number">01</div>
-    <h1 class="hero-title">Luxury Travel</h1>
-    <p class="hero-desc">Private jets, superyachts and ultra-exclusive resorts. We craft itineraries where the journey itself becomes the destination.</p>
+    <h1 class="hero-title" data-en="Luxury Travel" data-ru="Люксовые путешествия">Luxury Travel</h1>
+    <p class="hero-desc" data-en="Private jets, superyachts and ultra-exclusive resorts. We craft itineraries where the journey itself becomes the destination." data-ru="Секретные направления, скрытые курорты и маршруты, о которых массовые агентства не знают. Мы едем туда, куда путеводители не добираются.">Private jets, superyachts and ultra-exclusive resorts. We craft itineraries where the journey itself becomes the destination.</p>
   </div>
 </section>
 
@@ -495,28 +574,28 @@
   <div class="container" style="max-width:1100px;">
     <div class="service-content-grid">
       <div>
-        <span class="service-eyebrow">Luxury Travel</span>
+        <span class="service-eyebrow" data-en="Luxury Travel" data-ru="Люксовые путешествия">Luxury Travel</span>
         <div class="divider-left"></div>
-        <h2 class="service-content-title">Go beyond the map.<br>Discover the truly hidden.</h2>
-        <p class="service-content-body">ILOVELUX accesses destinations that mainstream agencies have never heard of — secret archipelagos claimed by a handful of families, private estates converted to boutique hotels that exist only through word of mouth, village hideaways with no reviews, no social media presence and no bookings page. These are places discovered through decades of relationship-building, not a Google search.</p>
-        <p class="service-content-body">Our on-the-ground contacts in every significant region of the world mean that when you travel with ILOVELUX, you do not simply visit a place — you are introduced to it. Local fixers, cultural guides, private landowners and trusted artisans open doors that are permanently closed to ordinary visitors. Every itinerary is built around what genuinely exists, not what a brochure has decided to show you.</p>
+        <h2 class="service-content-title" data-en="Go beyond the map.<br>Discover the truly hidden." data-ru="За пределами карты.<br>Откройте по-настоящему скрытое.">Go beyond the map.<br>Discover the truly hidden.</h2>
+        <p class="service-content-body" data-en="ILOVELUX accesses destinations that mainstream agencies have never heard of — secret archipelagos claimed by a handful of families, private estates converted to boutique hotels that exist only through word of mouth, village hideaways with no reviews, no social media presence and no bookings page. These are places discovered through decades of relationship-building, not a Google search." data-ru="ILOVELUX открывает направления, о которых массовые агентства никогда не слышали — тайные архипелаги, частные поместья, ставшие бутик-отелями, деревенские уголки без отзывов и социальных сетей. Это места, найденные через десятилетия личных связей, а не через поисковик.">ILOVELUX accesses destinations that mainstream agencies have never heard of — secret archipelagos claimed by a handful of families, private estates converted to boutique hotels that exist only through word of mouth, village hideaways with no reviews, no social media presence and no bookings page. These are places discovered through decades of relationship-building, not a Google search.</p>
+        <p class="service-content-body" data-en="Our on-the-ground contacts in every significant region of the world mean that when you travel with ILOVELUX, you do not simply visit a place — you are introduced to it. Local fixers, cultural guides, private landowners and trusted artisans open doors that are permanently closed to ordinary visitors. Every itinerary is built around what genuinely exists, not what a brochure has decided to show you." data-ru="Наши наземные контакты в каждом значимом регионе мира означают, что путешествуя с ILOVELUX, вы не просто посещаете место — вас туда вводят. Местные организаторы, культурные гиды, частные землевладельцы открывают двери, навсегда закрытые для обычных туристов.">Our on-the-ground contacts in every significant region of the world mean that when you travel with ILOVELUX, you do not simply visit a place — you are introduced to it. Local fixers, cultural guides, private landowners and trusted artisans open doors that are permanently closed to ordinary visitors. Every itinerary is built around what genuinely exists, not what a brochure has decided to show you.</p>
       </div>
       <div class="service-features">
         <div class="service-feature">
-          <div class="service-feature-title">Hidden Gem Itineraries</div>
-          <div class="service-feature-desc">Curated routes through undiscovered territories, local connections and off-grid experiences no agency has access to</div>
+          <div class="service-feature-title" data-en="Hidden Gem Itineraries" data-ru="Маршруты скрытых жемчужин">Hidden Gem Itineraries</div>
+          <div class="service-feature-desc" data-en="Curated routes through undiscovered territories, local connections and off-grid experiences no agency has access to" data-ru="Маршруты через неизведанные территории, местные связи и уникальный опыт, недоступный ни одному агентству">Curated routes through undiscovered territories, local connections and off-grid experiences no agency has access to</div>
         </div>
         <div class="service-feature">
-          <div class="service-feature-title">Private Estate & Villa Access</div>
-          <div class="service-feature-desc">Extraordinary private residences and exclusive properties available only through personal introductions</div>
+          <div class="service-feature-title" data-en="Private Estate & Villa Access" data-ru="Доступ к частным поместьям">Private Estate & Villa Access</div>
+          <div class="service-feature-desc" data-en="Extraordinary private residences and exclusive properties available only through personal introductions" data-ru="Исключительные частные резиденции, доступные только через личные рекомендации">Extraordinary private residences and exclusive properties available only through personal introductions</div>
         </div>
         <div class="service-feature">
-          <div class="service-feature-title">Cultural Immersion</div>
-          <div class="service-feature-desc">Private access to ceremonies, artists, chefs and communities — the authentic face of extraordinary places</div>
+          <div class="service-feature-title" data-en="Cultural Immersion" data-ru="Культурное погружение">Cultural Immersion</div>
+          <div class="service-feature-desc" data-en="Private access to ceremonies, artists, chefs and communities — the authentic face of extraordinary places" data-ru="Частный доступ к церемониям, художникам, поварам и сообществам — подлинное лицо исключительных мест">Private access to ceremonies, artists, chefs and communities — the authentic face of extraordinary places</div>
         </div>
         <div class="service-feature">
-          <div class="service-feature-title">Seamless Logistics</div>
-          <div class="service-feature-desc">Every detail from transfers to in-destination support, handled invisibly so you simply arrive and experience</div>
+          <div class="service-feature-title" data-en="Seamless Logistics" data-ru="Безупречная логистика">Seamless Logistics</div>
+          <div class="service-feature-desc" data-en="Every detail from transfers to in-destination support, handled invisibly so you simply arrive and experience" data-ru="Каждая деталь от трансферов до поддержки на месте решена незаметно — вы просто приезжаете и наслаждаетесь">Every detail from transfers to in-destination support, handled invisibly so you simply arrive and experience</div>
         </div>
       </div>
     </div>
@@ -530,12 +609,12 @@
   <div class="container" style="max-width:1100px;">
     <div class="service-contact-inner">
       <div>
-        <span class="service-eyebrow">Get in touch</span>
+        <span class="service-eyebrow" data-en="Get in touch" data-ru="Связаться с нами">Get in touch</span>
         <div class="divider-left"></div>
-        <h2 class="contact-left-title">Tell us what<br>you desire.</h2>
-        <p class="contact-left-sub">Every enquiry is treated with absolute discretion. Describe what you need and we will respond within hours.</p>
+        <h2 class="contact-left-title" data-en="Tell us what<br>you desire." data-ru="Расскажите, что<br>вы хотите.">Tell us what<br>you desire.</h2>
+        <p class="contact-left-sub" data-en="Every enquiry is treated with absolute discretion. Describe what you need and we will respond within hours." data-ru="Каждый запрос обрабатывается с абсолютной конфиденциальностью. Опишите, что вам нужно — мы ответим в течение нескольких часов.">Every enquiry is treated with absolute discretion. Describe what you need and we will respond within hours.</p>
         <div class="contact-detail">
-          <span class="contact-detail-label">Email</span>
+          <span class="contact-detail-label" data-en="Email" data-ru="Электронная почта">Email</span>
           <div class="contact-detail-value"><a href="mailto:hello@ilovelux.com">hello@ilovelux.com</a></div>
         </div>
         <div class="contact-detail">
@@ -546,23 +625,31 @@
       <div class="service-form">
         <div class="form-row">
           <div class="form-field">
-            <label>First name</label>
+            <label data-en="First name" data-ru="Имя">First name</label>
             <input type="text" placeholder="Alexander">
           </div>
           <div class="form-field">
-            <label>Last name</label>
+            <label data-en="Last name" data-ru="Фамилия">Last name</label>
             <input type="text" placeholder="Smith">
           </div>
         </div>
         <div class="form-field">
-          <label>Your email</label>
-          <input type="email" placeholder="your@email.com">
+          <label data-en="Preferred contact method" data-ru="Предпочтительный способ связи">Preferred contact method</label>
+          <div class="contact-method-tabs">
+            <button type="button" class="method-tab active" data-method="email" onclick="selectMethod('email')">Email</button>
+            <button type="button" class="method-tab" data-method="whatsapp" onclick="selectMethod('whatsapp')">WhatsApp</button>
+            <button type="button" class="method-tab" data-method="telegram" onclick="selectMethod('telegram')">Telegram</button>
+          </div>
+        </div>
+        <div class="form-field" id="sc-wrap">
+          <label id="sc-label" data-en="Your email" data-ru="Ваш email">Your email</label>
+          <input type="email" id="sc-input" placeholder="your@email.com">
         </div>
         <div class="form-field">
-          <label>Your request</label>
-          <textarea placeholder="Describe what you have in mind..."></textarea>
+          <label data-en="Your request" data-ru="Ваш запрос">Your request</label>
+          <textarea data-en="Describe what you have in mind..." data-ru="Опишите, что вы имеете в виду..." placeholder="Describe what you have in mind..."></textarea>
         </div>
-        <button class="btn-submit">Send Request</button>
+        <button class="btn-submit" data-en="Send Request" data-ru="Отправить запрос">Send Request</button>
       </div>
     </div>
   </div>
@@ -580,11 +667,74 @@
 </footer>
 
 <script>
-window.addEventListener('scroll', () => {
-  const nav = document.getElementById('navbar');
-  if (window.scrollY > 40) nav.classList.add('scrolled');
-  else nav.classList.remove('scrolled');
-});
+let currentLang = 'en';
+let activeMethod = 'email';
+
+const methodConfig = {
+  email: {
+    en: { label: 'Your email', placeholder: 'your@email.com', type: 'email' },
+    ru: { label: 'Ваш email', placeholder: 'your@email.com', type: 'email' }
+  },
+  whatsapp: {
+    en: { label: 'Your phone number', placeholder: '+44 700 000 0000', type: 'tel' },
+    ru: { label: 'Ваш номер телефона', placeholder: '+7 000 000 0000', type: 'tel' }
+  },
+  telegram: {
+    en: { label: 'Your Telegram @username', placeholder: '@username', type: 'text' },
+    ru: { label: 'Ваш Telegram @username', placeholder: '@username', type: 'text' }
+  }
+};
+
+function selectMethod(method) {
+  activeMethod = method;
+  document.querySelectorAll('.method-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.method === method);
+  });
+  const cfg = methodConfig[method][currentLang];
+  const wrap = document.getElementById('sc-wrap');
+  wrap.style.opacity = '0';
+  setTimeout(() => {
+    document.getElementById('sc-label').textContent = cfg.label;
+    document.getElementById('sc-input').type = cfg.type;
+    document.getElementById('sc-input').placeholder = cfg.placeholder;
+    wrap.style.opacity = '1';
+  }, 200);
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('ilovelux_lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.toLowerCase() === lang);
+  });
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const val = el.getAttribute('data-' + lang);
+    if (!val) return;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      el.placeholder = val;
+    } else {
+      el.innerHTML = val;
+    }
+  });
+  const cfg = methodConfig[activeMethod][lang];
+  const label = document.getElementById('sc-label');
+  const input = document.getElementById('sc-input');
+  if (label) label.textContent = cfg.label;
+  if (input) input.placeholder = cfg.placeholder;
+}
+
+// Init
+(function() {
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (nav) {
+      if (window.scrollY > 40) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    }
+  });
+  const savedLang = localStorage.getItem('ilovelux_lang');
+  if (savedLang && savedLang !== 'en') setLang(savedLang);
+})();
 </script>
 </body>
 </html>
