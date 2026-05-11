@@ -452,12 +452,19 @@
     overflow: hidden;
   }
 
+  .hero-photo {
+    position: absolute; inset: 0;
+    background: url('images/hand.png') center/cover no-repeat;
+    filter: blur(3px);
+    transform: scale(1.04);
+    opacity: 0.65;
+  }
   .hero-bg {
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 80% 60% at 50% 20%, rgba(100,20,40,0.22) 0%, transparent 60%),
-      linear-gradient(180deg, rgba(26,10,15,0) 60%, rgba(26,10,15,1) 100%);
+      radial-gradient(ellipse 80% 60% at 50% 20%, rgba(100,20,40,0.15) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(26,10,15,0.15) 0%, rgba(26,10,15,0.55) 70%, rgba(26,10,15,1) 100%);
   }
 
   /* Grid lines */
@@ -1133,6 +1140,7 @@
 
 <!-- HERO -->
 <section id="hero">
+  <div class="hero-photo"></div>
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-content">
