@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1A0A0F">
 <title>ILOVELUX — Private Concierge & Curated Lifestyle</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -360,19 +361,20 @@
   .mobile-menu {
     display: none;
     position: fixed;
-    inset: 0;
-    top: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
     z-index: 999;
-    background: rgba(20,6,10,0.96);
-    backdrop-filter: blur(32px) saturate(180%);
-    -webkit-backdrop-filter: blur(32px) saturate(180%);
+    background: #1A0A0F;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 40px;
-    padding: 72px 40px 60px;
+    padding: max(72px, calc(72px + env(safe-area-inset-top))) 40px max(60px, calc(60px + env(safe-area-inset-bottom)));
   }
   .mobile-menu.open { display: flex; }
+  body.menu-open { overflow: hidden; position: fixed; width: 100%; }
   .mobile-menu a {
     font-size: 1.6rem;
     font-family: 'Cormorant Garamond', serif;
@@ -585,8 +587,7 @@
   .scroll-hint {
     position: absolute;
     bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0; right: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1382,13 +1383,24 @@
 </footer>
 
 <script>
+  let _menuScrollY = 0;
   function toggleMenu() {
     const btn = document.getElementById('navHamburger');
     const menu = document.getElementById('mobileMenu');
     const nav = document.getElementById('navbar');
+    const opening = !menu.classList.contains('open');
     btn.classList.toggle('open');
     menu.classList.toggle('open');
     nav.classList.toggle('menu-open');
+    if (opening) {
+      _menuScrollY = window.scrollY;
+      document.body.style.top = `-${_menuScrollY}px`;
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+      document.body.style.top = '';
+      window.scrollTo(0, _menuScrollY);
+    }
   }
 
 // ─── CONTACT METHOD ───
