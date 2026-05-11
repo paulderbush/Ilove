@@ -86,13 +86,89 @@
     transition: opacity 0.3s;
   }
   .nav-logo:hover { opacity: 0.75; }
-  .nav-back {
-    font-size: 0.62rem; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--text-muted);
-    text-decoration: none; transition: color 0.3s;
-    display: flex; align-items: center; gap: 8px;
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
   }
-  .nav-back:hover { color: var(--gold); }
+  .nav-links a {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0; right: 0;
+    height: 1px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 40px;
+    padding: 4px 6px;
+  }
+  .lang-btn {
+    padding: 5px 12px;
+    border-radius: 30px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .lang-btn.active {
+    background: rgba(200,200,212,0.15);
+    color: var(--gold-light);
+    border: 1px solid rgba(200,200,212,0.25);
+  }
+  .contact-method-tabs {
+    display: flex;
+    gap: 8px;
+  }
+  .method-tab {
+    flex: 1;
+    padding: 11px 8px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    color: var(--text-muted);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-transform: uppercase;
+  }
+  .method-tab:hover { border-color: rgba(200,200,212,0.2); color: var(--text); }
+  .method-tab.active {
+    background: rgba(200,200,212,0.1);
+    border-color: rgba(200,200,212,0.35);
+    color: var(--gold-light);
+  }
+  #sc-wrap { transition: opacity 0.25s ease; }
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+  }
   .service-hero {
     position: relative;
     min-height: 100vh;
@@ -365,18 +441,27 @@
 </head>
 <body>
 <div class="ambient"></div>
+<!-- NAV -->
 <nav id="navbar">
   <a href="index.html" class="nav-logo">ILOVELUX</a>
-  <a href="index.html" class="nav-back">← Back</a>
+  <ul class="nav-links">
+    <li><a href="index.html#services" data-en="Services" data-ru="Услуги">Services</a></li>
+    <li><a href="index.html#who-we-are" data-en="Who We Are" data-ru="О нас">Who We Are</a></li>
+    <li><a href="index.html#contacts" data-en="Contacts" data-ru="Контакты">Contacts</a></li>
+  </ul>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('ru')">RU</button>
+  </div>
 </nav>
 <section class="service-hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Our Services</div>
+    <div class="hero-eyebrow" data-en="Our Services" data-ru="Наши Услуги">Our Services</div>
     <div class="hero-number">05</div>
-    <h1 class="hero-title">Banking Support</h1>
-    <p class="hero-desc">Introductions to private banks, wealth management guidance and facilitation of complex international financial needs.</p>
+    <h1 class="hero-title" data-en="Banking Support" data-ru="Банковское сопровождение">Banking Support</h1>
+    <p class="hero-desc" data-en="Introductions to private banks, wealth management guidance and facilitation of complex international financial needs." data-ru="Знакомство с частными банками, рекомендации по управлению капиталом и сопровождение сложных международных финансовых потребностей.">Introductions to private banks, wealth management guidance and facilitation of complex international financial needs.</p>
   </div>
 </section>
 <div class="gold-line"></div>
@@ -394,28 +479,28 @@
   <div class="container" style="max-width:1100px;">
     <div class="service-content-grid">
       <div>
-        <span class="service-eyebrow">Banking Support</span>
+        <span class="service-eyebrow" data-en="Banking Support" data-ru="Банковское сопровождение">Banking Support</span>
         <div class="divider-left"></div>
-        <h2 class="service-content-title">The right bank.<br>The right introduction.</h2>
-        <p class="service-content-body">True private banking — the kind reserved for ultra-high-net-worth individuals — is not applied for. It is accessed through an introduction from someone whose word carries weight. ILOVELUX facilitates warm introductions to the relationship managers at tier-one private banks in Switzerland, London, Singapore, the Channel Islands and beyond, removing the friction and uncertainty of approaching these institutions without the right connection.</p>
-        <p class="service-content-body">Beyond the introduction, we navigate complex international financial structures on your behalf — advising on jurisdiction, structure and the selection of institutions that align with your specific objectives. Whether you require multi-currency wealth management, family trust structuring, or a discreet relationship with a bank that does not advertise its services, ILOVELUX knows who to call and how to open the conversation correctly.</p>
+        <h2 class="service-content-title" data-en="The right bank.<br>The right introduction." data-ru="Правильный банк.<br>Правильное знакомство.">The right bank.<br>The right introduction.</h2>
+        <p class="service-content-body" data-en="True private banking — the kind reserved for ultra-high-net-worth individuals — is not applied for. It is accessed through an introduction from someone whose word carries weight. ILOVELUX facilitates warm introductions to the relationship managers at tier-one private banks in Switzerland, London, Singapore, the Channel Islands and beyond, removing the friction and uncertainty of approaching these institutions without the right connection." data-ru="Доступ к настоящему частному банкингу — для состоятельных клиентов — требует правильного знакомства. ILOVELUX обеспечивает личные интродукции к ведущим частным банкам в Швейцарии, Лондоне, Сингапуре и других юрисдикциях.">True private banking — the kind reserved for ultra-high-net-worth individuals — is not applied for. It is accessed through an introduction from someone whose word carries weight. ILOVELUX facilitates warm introductions to the relationship managers at tier-one private banks in Switzerland, London, Singapore, the Channel Islands and beyond, removing the friction and uncertainty of approaching these institutions without the right connection.</p>
+        <p class="service-content-body" data-en="Beyond the introduction, we navigate complex international financial structures on your behalf — advising on jurisdiction, structure and the selection of institutions that align with your specific objectives. Whether you require multi-currency wealth management, family trust structuring, or a discreet relationship with a bank that does not advertise its services, ILOVELUX knows who to call and how to open the conversation correctly." data-ru="Мы помогаем ориентироваться в сложных международных финансовых структурах от вашего имени, обеспечивая доступ к уровню обслуживания, который недоступен через стандартные каналы.">Beyond the introduction, we navigate complex international financial structures on your behalf — advising on jurisdiction, structure and the selection of institutions that align with your specific objectives. Whether you require multi-currency wealth management, family trust structuring, or a discreet relationship with a bank that does not advertise its services, ILOVELUX knows who to call and how to open the conversation correctly.</p>
       </div>
       <div class="service-features">
         <div class="service-feature">
-          <div class="service-feature-title">Private Bank Introductions</div>
-          <div class="service-feature-desc">Direct access to relationship managers at tier-one private banks — no cold applications</div>
+          <div class="service-feature-title" data-en="Private Bank Introductions" data-ru="Интродукции в частные банки">Private Bank Introductions</div>
+          <div class="service-feature-desc" data-en="Direct access to relationship managers at tier-one private banks — no cold applications" data-ru="Прямой доступ к менеджерам по работе с клиентами в банках первого уровня — без холодных заявок">Direct access to relationship managers at tier-one private banks — no cold applications</div>
         </div>
         <div class="service-feature">
-          <div class="service-feature-title">Wealth Management Guidance</div>
-          <div class="service-feature-desc">Advisory on structuring, multi-jurisdiction management and private banking selection</div>
+          <div class="service-feature-title" data-en="Wealth Management Guidance" data-ru="Управление капиталом">Wealth Management Guidance</div>
+          <div class="service-feature-desc" data-en="Advisory on structuring, multi-jurisdiction management and private banking selection" data-ru="Консультации по структурированию, мультиюрисдикционному управлению и выбору частного банка">Advisory on structuring, multi-jurisdiction management and private banking selection</div>
         </div>
         <div class="service-feature">
-          <div class="service-feature-title">International Transfers & Solutions</div>
-          <div class="service-feature-desc">Support with complex cross-border financial needs and currency solutions</div>
+          <div class="service-feature-title" data-en="International Transfers & Solutions" data-ru="Международные переводы">International Transfers & Solutions</div>
+          <div class="service-feature-desc" data-en="Support with complex cross-border financial needs and currency solutions" data-ru="Поддержка в сложных трансграничных финансовых потребностях и валютных решениях">Support with complex cross-border financial needs and currency solutions</div>
         </div>
         <div class="service-feature">
-          <div class="service-feature-title">Family Office Support</div>
-          <div class="service-feature-desc">Connections to established multi-family offices and trusted advisory networks</div>
+          <div class="service-feature-title" data-en="Family Office Support" data-ru="Поддержка family office">Family Office Support</div>
+          <div class="service-feature-desc" data-en="Connections to established multi-family offices and trusted advisory networks" data-ru="Связи с известными мультисемейными офисами и доверенными консультационными сетями">Connections to established multi-family offices and trusted advisory networks</div>
         </div>
       </div>
     </div>
@@ -424,16 +509,17 @@
 
 <div class="gold-line"></div>
 
+<!-- CONTACT SECTION -->
 <section class="service-contact">
   <div class="container" style="max-width:1100px;">
     <div class="service-contact-inner">
       <div>
-        <span class="service-eyebrow">Get in touch</span>
+        <span class="service-eyebrow" data-en="Get in touch" data-ru="Связаться с нами">Get in touch</span>
         <div class="divider-left"></div>
-        <h2 class="contact-left-title">Tell us what<br>you desire.</h2>
-        <p class="contact-left-sub">Every enquiry is treated with absolute discretion. Describe what you need and we will respond within hours.</p>
+        <h2 class="contact-left-title" data-en="Tell us what<br>you desire." data-ru="Расскажите, что<br>вы хотите.">Tell us what<br>you desire.</h2>
+        <p class="contact-left-sub" data-en="Every enquiry is treated with absolute discretion. Describe what you need and we will respond within hours." data-ru="Каждый запрос обрабатывается с абсолютной конфиденциальностью. Опишите, что вам нужно — мы ответим в течение нескольких часов.">Every enquiry is treated with absolute discretion. Describe what you need and we will respond within hours.</p>
         <div class="contact-detail">
-          <span class="contact-detail-label">Email</span>
+          <span class="contact-detail-label" data-en="Email" data-ru="Электронная почта">Email</span>
           <div class="contact-detail-value"><a href="mailto:hello@ilovelux.com">hello@ilovelux.com</a></div>
         </div>
         <div class="contact-detail">
@@ -444,23 +530,31 @@
       <div class="service-form">
         <div class="form-row">
           <div class="form-field">
-            <label>First name</label>
+            <label data-en="First name" data-ru="Имя">First name</label>
             <input type="text" placeholder="Alexander">
           </div>
           <div class="form-field">
-            <label>Last name</label>
+            <label data-en="Last name" data-ru="Фамилия">Last name</label>
             <input type="text" placeholder="Smith">
           </div>
         </div>
         <div class="form-field">
-          <label>Your email</label>
-          <input type="email" placeholder="your@email.com">
+          <label data-en="Preferred contact method" data-ru="Предпочтительный способ связи">Preferred contact method</label>
+          <div class="contact-method-tabs">
+            <button type="button" class="method-tab active" data-method="email" onclick="selectMethod('email')">Email</button>
+            <button type="button" class="method-tab" data-method="whatsapp" onclick="selectMethod('whatsapp')">WhatsApp</button>
+            <button type="button" class="method-tab" data-method="telegram" onclick="selectMethod('telegram')">Telegram</button>
+          </div>
+        </div>
+        <div class="form-field" id="sc-wrap">
+          <label id="sc-label" data-en="Your email" data-ru="Ваш email">Your email</label>
+          <input type="email" id="sc-input" placeholder="your@email.com">
         </div>
         <div class="form-field">
-          <label>Your request</label>
-          <textarea placeholder="Describe what you have in mind..."></textarea>
+          <label data-en="Your request" data-ru="Ваш запрос">Your request</label>
+          <textarea data-en="Describe what you have in mind..." data-ru="Опишите, что вы имеете в виду..." placeholder="Describe what you have in mind..."></textarea>
         </div>
-        <button class="btn-submit">Send Request</button>
+        <button class="btn-submit" data-en="Send Request" data-ru="Отправить запрос">Send Request</button>
       </div>
     </div>
   </div>
@@ -476,11 +570,74 @@
   </div>
 </footer>
 <script>
-window.addEventListener('scroll', () => {
-  const nav = document.getElementById('navbar');
-  if (window.scrollY > 40) nav.classList.add('scrolled');
-  else nav.classList.remove('scrolled');
-});
+let currentLang = 'en';
+let activeMethod = 'email';
+
+const methodConfig = {
+  email: {
+    en: { label: 'Your email', placeholder: 'your@email.com', type: 'email' },
+    ru: { label: 'Ваш email', placeholder: 'your@email.com', type: 'email' }
+  },
+  whatsapp: {
+    en: { label: 'Your phone number', placeholder: '+44 700 000 0000', type: 'tel' },
+    ru: { label: 'Ваш номер телефона', placeholder: '+7 000 000 0000', type: 'tel' }
+  },
+  telegram: {
+    en: { label: 'Your Telegram @username', placeholder: '@username', type: 'text' },
+    ru: { label: 'Ваш Telegram @username', placeholder: '@username', type: 'text' }
+  }
+};
+
+function selectMethod(method) {
+  activeMethod = method;
+  document.querySelectorAll('.method-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.method === method);
+  });
+  const cfg = methodConfig[method][currentLang];
+  const wrap = document.getElementById('sc-wrap');
+  wrap.style.opacity = '0';
+  setTimeout(() => {
+    document.getElementById('sc-label').textContent = cfg.label;
+    document.getElementById('sc-input').type = cfg.type;
+    document.getElementById('sc-input').placeholder = cfg.placeholder;
+    wrap.style.opacity = '1';
+  }, 200);
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('ilovelux_lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.toLowerCase() === lang);
+  });
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const val = el.getAttribute('data-' + lang);
+    if (!val) return;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      el.placeholder = val;
+    } else {
+      el.innerHTML = val;
+    }
+  });
+  const cfg = methodConfig[activeMethod][lang];
+  const label = document.getElementById('sc-label');
+  const input = document.getElementById('sc-input');
+  if (label) label.textContent = cfg.label;
+  if (input) input.placeholder = cfg.placeholder;
+}
+
+// Init
+(function() {
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (nav) {
+      if (window.scrollY > 40) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    }
+  });
+  const savedLang = localStorage.getItem('ilovelux_lang');
+  if (savedLang && savedLang !== 'en') setLang(savedLang);
+})();
 </script>
 </body>
 </html>
