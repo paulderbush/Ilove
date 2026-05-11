@@ -202,12 +202,18 @@
     padding: 140px 40px 100px;
     overflow: hidden;
   }
+  .hero-photo {
+    position: absolute; inset: 0;
+    background: url('images/travel.png') center/cover no-repeat;
+    filter: blur(3px);
+    transform: scale(1.04);
+    opacity: 0.65;
+  }
   .hero-bg {
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 80% 60% at 50% 20%, rgba(100,20,40,0.22) 0%, transparent 60%),
-      linear-gradient(180deg, rgba(26,10,15,0) 60%, rgba(26,10,15,1) 100%);
+      radial-gradient(ellipse 80% 60% at 50% 20%, rgba(100,20,40,0.15) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(26,10,15,0.15) 0%, rgba(26,10,15,0.55) 70%, rgba(26,10,15,1) 100%);
   }
   .hero-grid {
     position: absolute;
@@ -280,21 +286,6 @@
     width: 100%;
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(200,200,212,0.15), transparent);
-  }
-
-  /* IMAGE SECTION */
-  .service-image-section { padding: 60px 0 0; }
-  .service-img-wrap {
-    border-radius: 24px;
-    overflow: hidden;
-    border: 1px solid rgba(200,200,212,0.1);
-    max-height: 560px;
-  }
-  .service-img-wrap img {
-    width: 100%;
-    height: 560px;
-    object-fit: cover;
-    display: block;
   }
 
   /* CONTENT SECTION */
@@ -547,6 +538,7 @@
 
 <!-- HERO -->
 <section class="service-hero">
+  <div class="hero-photo"></div>
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-content">
@@ -557,16 +549,6 @@
   </div>
 </section>
 
-<div class="gold-line"></div>
-
-<!-- IMAGE SECTION -->
-<section class="service-image-section">
-  <div class="container">
-    <div class="service-img-wrap">
-      <img src="images/travel.png" alt="Luxury Travel" onerror="this.parentElement.style.display='none'">
-    </div>
-  </div>
-</section>
 <div class="gold-line"></div>
 
 <!-- CONTENT SECTION -->
