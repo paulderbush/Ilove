@@ -914,6 +914,20 @@
     box-shadow: 0 2px 16px rgba(200,200,212,0.08);
   }
 
+  /* ─── POPUP LANG ─── */
+  .popup-lang {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 40px;
+    padding: 4px 6px;
+  }
+
   /* contact input transition */
   #contact-input-wrap {
     transition: opacity 0.25s ease;
@@ -928,6 +942,10 @@
 <!-- POPUP -->
 <div id="popup-overlay">
   <div id="popup">
+    <div class="popup-lang">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('ru')">RU</button>
+    </div>
     <div class="popup-dots">
       <div class="dot active" id="dot1"></div>
       <div class="dot" id="dot2"></div>
@@ -1021,7 +1039,7 @@
       <div class="service-card reveal" data-href="luxury-travel.html">
         <span class="service-num">01</span>
         <div class="service-name" data-en="Luxury Travel" data-ru="Люксовые путешествия">Luxury Travel</div>
-        <p class="service-detail" data-en="Private jets, superyachts, ultra-exclusive resorts. We craft itineraries that turn the journey into the destination." data-ru="Частные самолёты, суперяхты, эксклюзивные курорты. Мы создаём маршруты, где сам путь становится назначением.">Private jets, superyachts, ultra-exclusive resorts. We craft itineraries that turn the journey into the destination.</p>
+        <p class="service-detail" data-en="Secret destinations, hidden resorts and extraordinary routes that no mainstream travel agency has ever heard of. We go where guidebooks don't." data-ru="Секретные направления, скрытые курорты и маршруты, о которых массовые агентства не знают. Мы едем туда, куда путеводители не добираются.">Secret destinations, hidden resorts and extraordinary routes that no mainstream travel agency has ever heard of. We go where guidebooks don't.</p>
       </div>
       <div class="service-card reveal" style="transition-delay:0.07s" data-href="events-celebrations.html">
         <span class="service-num">02</span>
@@ -1257,6 +1275,7 @@ let currentLang = 'en';
 
 function setLang(lang) {
   currentLang = lang;
+  localStorage.setItem('ilovelux_lang', lang);
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.lang-btn').forEach(b => { if(b.textContent.toLowerCase() === lang) b.classList.add('active'); });
 
@@ -1352,6 +1371,18 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ─── INIT: POPUP VISITED + SAVED LANG ───
+(function() {
+  if (localStorage.getItem('ilovelux_visited')) {
+    const overlay = document.getElementById('popup-overlay');
+    if (overlay) overlay.style.display = 'none';
+  } else {
+    localStorage.setItem('ilovelux_visited', '1');
+  }
+  const savedLang = localStorage.getItem('ilovelux_lang');
+  if (savedLang && savedLang !== 'en') setLang(savedLang);
+})();
 
 // ─── SERVICE CARD CLICK ───
 document.querySelectorAll('.service-card[data-href]').forEach(card => {
