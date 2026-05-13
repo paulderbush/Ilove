@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#1A0A0F">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="images/favicon192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="images/favicon512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicon180.png">
 <title>ILOVELUX — Private Concierge & Curated Lifestyle</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1320,11 +1325,11 @@
           <div class="form-row">
             <div class="form-field">
               <label data-en="First name" data-ru="Имя">First name</label>
-              <input type="text" placeholder="Alexander">
+              <input type="text" id="cf-fname" placeholder="Alexander">
             </div>
             <div class="form-field">
               <label data-en="Last name" data-ru="Фамилия">Last name</label>
-              <input type="text" placeholder="Smith">
+              <input type="text" id="cf-lname" placeholder="Smith">
             </div>
           </div>
 
@@ -1346,7 +1351,7 @@
 
           <div class="form-field">
             <label data-en="Service of interest" data-ru="Интересующая услуга">Service of interest</label>
-            <select>
+            <select id="cf-service">
               <option value="" data-en="Select a service..." data-ru="Выберите услугу...">Select a service...</option>
               <option data-en="Luxury Travel" data-ru="Люксовые путешествия">Luxury Travel</option>
               <option data-en="Events & Celebrations" data-ru="События и праздники">Events & Celebrations</option>
@@ -1361,9 +1366,9 @@
           </div>
           <div class="form-field">
             <label data-en="Your request (optional)" data-ru="Ваш запрос (необязательно)">Your request (optional)</label>
-            <textarea data-en="Describe what you have in mind..." data-ru="Опишите, что вы имеете в виду..." placeholder="Describe what you have in mind..."></textarea>
+            <textarea id="cf-message" data-en="Describe what you have in mind..." data-ru="Опишите, что вы имеете в виду..." placeholder="Describe what you have in mind..."></textarea>
           </div>
-          <button class="btn-primary" style="width:100%; border-radius:12px; padding:16px;" data-en="Send Request" data-ru="Отправить запрос">Send Request</button>
+          <button id="cf-submit" class="btn-primary" style="width:100%; border-radius:12px; padding:16px;" data-en="Send Request" data-ru="Отправить запрос">Send Request</button>
         </div>
       </div>
     </div>
@@ -1568,6 +1573,33 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
+});
+
+// ─── TELEGRAM FORM ───
+async function sendToTelegram(text) {
+  try {
+    await fetch('https://api.telegram.org/bot8952607644:AAH8f2BQf6PvS8oXV41MV0gM1KtM4DJPQbE/sendMessage', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: '8885767504', text, parse_mode: 'HTML' })
+    });
+  } catch(e) {}
+}
+
+document.getElementById('cf-submit').addEventListener('click', async function() {
+  const fname = document.getElementById('cf-fname').value.trim();
+  const lname = document.getElementById('cf-lname').value.trim();
+  const contact = document.getElementById('contact-input').value.trim();
+  const method = document.querySelector('.method-tab.active')?.dataset.method || 'email';
+  const service = document.getElementById('cf-service').value;
+  const message = document.getElementById('cf-message').value.trim();
+  if (!fname && !contact) return;
+  const text = `🔔 <b>New Request — ILOVELUX</b>\n\n👤 <b>Name:</b> ${fname} ${lname}\n📞 <b>Contact (${method}):</b> ${contact || '—'}\n🛎 <b>Service:</b> ${service || '—'}\n📝 <b>Message:</b> ${message || '—'}`;
+  await sendToTelegram(text);
+  const label = this.dataset.en || 'Send Request';
+  this.textContent = '✓ Sent';
+  this.disabled = true;
+  setTimeout(() => { this.textContent = label; this.disabled = false; }, 3000);
 });
 </script>
 
