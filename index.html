@@ -1146,6 +1146,15 @@
   </div>
 </div>
 
+<!-- SUCCESS POPUP -->
+<div id="success-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.72); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); z-index:10002; align-items:center; justify-content:center; padding:24px;">
+  <div style="position:relative; max-width:480px; width:100%; background:rgba(26,10,15,0.96); border:1px solid rgba(200,200,212,0.18); border-radius:24px; padding:56px 48px 48px; text-align:center; box-shadow:0 32px 80px rgba(0,0,0,0.7); animation:slideUp 0.4s cubic-bezier(0.16,1,0.3,1) forwards;">
+    <button onclick="closeSuccess()" aria-label="Close" style="position:absolute; top:18px; right:20px; background:transparent; border:none; color:rgba(240,237,232,0.45); cursor:pointer; font-size:1.3rem; line-height:1; padding:4px 8px; transition:color 0.2s;" onmouseover="this.style.color='rgba(240,237,232,0.9)'" onmouseout="this.style.color='rgba(240,237,232,0.45)'">✕</button>
+    <div style="font-family:'Cormorant Garamond',serif; font-size:2.4rem; color:var(--gold); margin-bottom:20px; opacity:0.85;">✦</div>
+    <p style="font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:300; color:var(--text); line-height:1.65;">We got your request and will<br>contact you shortly.<br><br><em style="color:var(--gold-light); opacity:0.8;">Thank you!</em></p>
+  </div>
+</div>
+
 <!-- HERO -->
 <section id="hero">
   <div class="hero-photo"></div>
@@ -1586,6 +1595,15 @@ async function sendToTelegram(text) {
   } catch(e) {}
 }
 
+function showSuccess() {
+  const el = document.getElementById('success-overlay');
+  el.style.display = 'flex';
+  el.addEventListener('click', function(e) { if (e.target === el) closeSuccess(); }, { once: true });
+}
+function closeSuccess() {
+  document.getElementById('success-overlay').style.display = 'none';
+}
+
 document.getElementById('cf-submit').addEventListener('click', async function() {
   const fname = document.getElementById('cf-fname').value.trim();
   const lname = document.getElementById('cf-lname').value.trim();
@@ -1596,10 +1614,7 @@ document.getElementById('cf-submit').addEventListener('click', async function() 
   if (!fname && !contact) return;
   const text = `🔔 <b>New Request — ILOVELUX</b>\n\n👤 <b>Name:</b> ${fname} ${lname}\n📞 <b>Contact (${method}):</b> ${contact || '—'}\n🛎 <b>Service:</b> ${service || '—'}\n📝 <b>Message:</b> ${message || '—'}`;
   await sendToTelegram(text);
-  const label = this.dataset.en || 'Send Request';
-  this.textContent = '✓ Sent';
-  this.disabled = true;
-  setTimeout(() => { this.textContent = label; this.disabled = false; }, 3000);
+  showSuccess();
 });
 </script>
 
