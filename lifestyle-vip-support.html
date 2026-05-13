@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#1A0A0F">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="images/favicon192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="images/favicon512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicon180.png">
 <title>Lifestyle VIP Support — ILOVELUX</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -638,11 +643,11 @@
         <div class="form-row">
           <div class="form-field">
             <label data-en="First name" data-ru="Имя">First name</label>
-            <input type="text" placeholder="Alexander">
+            <input type="text" id="sc-fname" placeholder="Alexander">
           </div>
           <div class="form-field">
             <label data-en="Last name" data-ru="Фамилия">Last name</label>
-            <input type="text" placeholder="Smith">
+            <input type="text" id="sc-lname" placeholder="Smith">
           </div>
         </div>
         <div class="form-field">
@@ -659,9 +664,9 @@
         </div>
         <div class="form-field">
           <label data-en="Your request" data-ru="Ваш запрос">Your request</label>
-          <textarea data-en="Describe what you have in mind..." data-ru="Опишите, что вы имеете в виду..." placeholder="Describe what you have in mind..."></textarea>
+          <textarea id="sc-message" data-en="Describe what you have in mind..." data-ru="Опишите, что вы имеете в виду..." placeholder="Describe what you have in mind..."></textarea>
         </div>
-        <button class="btn-submit" data-en="Send Request" data-ru="Отправить запрос">Send Request</button>
+        <button id="sc-submit" class="btn-submit" data-en="Send Request" data-ru="Отправить запрос">Send Request</button>
       </div>
     </div>
   </div>
@@ -765,6 +770,33 @@ function setLang(lang) {
   const savedLang = localStorage.getItem('ilovelux_lang');
   if (savedLang && savedLang !== 'en') setLang(savedLang);
 })();
+
+// ─── TELEGRAM FORM ───
+async function sendToTelegram(text) {
+  try {
+    await fetch('https://api.telegram.org/bot8952607644:AAH8f2BQf6PvS8oXV41MV0gM1KtM4DJPQbE/sendMessage', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: '8885767504', text, parse_mode: 'HTML' })
+    });
+  } catch(e) {}
+}
+
+document.getElementById('sc-submit').addEventListener('click', async function() {
+  const fname = document.getElementById('sc-fname').value.trim();
+  const lname = document.getElementById('sc-lname').value.trim();
+  const contact = document.getElementById('sc-input').value.trim();
+  const method = document.querySelector('.method-tab.active')?.dataset.method || 'email';
+  const message = document.getElementById('sc-message').value.trim();
+  const pageTitle = document.title.replace(' — ILOVELUX', '').trim();
+  if (!fname && !contact) return;
+  const text = `🔔 <b>New Request — ${pageTitle}</b>\n\n👤 <b>Name:</b> ${fname} ${lname}\n📞 <b>Contact (${method}):</b> ${contact || '—'}\n📝 <b>Message:</b> ${message || '—'}`;
+  await sendToTelegram(text);
+  const label = this.dataset.en || 'Send Request';
+  this.textContent = '✓ Sent';
+  this.disabled = true;
+  setTimeout(() => { this.textContent = label; this.disabled = false; }, 3000);
+});
 </script>
 
 <div class="float-contact">
